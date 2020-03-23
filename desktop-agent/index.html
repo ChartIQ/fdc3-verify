@@ -13,17 +13,20 @@
   <script src="/src/js/HtmlReporter.js"></script>
   <script src="/src/lib/jasmine-3.5.0/boot.js"></script>
 
-  <!-- include source files here... -->
-  <script src="/src/js/Player.js"></script>
-  <script src="/src/js/Song.js"></script>
+  <!-- Mock Objects -->
+  <script src="/src/mock-objects/DesktopAgent.js"></script>
 
   <!-- include spec files here... -->
-  <script src="spec/SpecHelper.js"></script>
-  <script src="spec/PlayerSpec.js"></script>
+  <script src="spec/DesktopAgentSpec.js"></script>
+
 
 </head>
 
 <body>
+  <script>
+    window.fdc3 = {};
+    window.fdc3.desktopAgent = new DesktopAgent();
+  </script>
 </body>
 
 </html>
