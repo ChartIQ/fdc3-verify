@@ -8,7 +8,7 @@
  [jasmine-gem]: http://github.com/pivotal/jasmine-gem
  */
 
-(function() {
+export const boot = function(jasmineRequire) {
 
   /**
    * ## Require &amp; Instantiate
@@ -133,4 +133,4 @@
     return destination;
   }
 
-}());
+}

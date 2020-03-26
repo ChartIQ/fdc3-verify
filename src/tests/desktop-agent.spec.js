@@ -1,3 +1,19 @@
+import jasmineRequire from '/lib/jasmine-3.5.0/jasmine.js';
+import { html, HtmlReporter, HtmlSpecFilter, ResultsNode, QueryString } from '../js/HtmlReporter'
+jasmineRequire.html = html;
+jasmineRequire.HtmlReporter = HtmlReporter;
+jasmineRequire.HtmlSpecFilter = HtmlSpecFilter;
+jasmineRequire.ResultsNode = ResultsNode;
+jasmineRequire.QueryString = QueryString;
+
+import { boot } from '../lib/jasmine-3.5.0/boot';
+
+// const jasmine = jasmineRequire.core(jasmineRequire);
+window.jasmineRequire = jasmineRequire;
+boot(jasmineRequire);
+// window.jasmine = jasmine;
+debugger
+
 describe("FDC3", function() {
   // * FDC3 Tests
   it("is defined", function() {

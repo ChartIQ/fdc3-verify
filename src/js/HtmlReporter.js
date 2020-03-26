@@ -1,13 +1,13 @@
 const fdc3Version = '1.1';
 
-jasmineRequire.html = function(j$) {
+export const html = function(j$) {
   j$.ResultsNode = jasmineRequire.ResultsNode();
   j$.HtmlReporter = jasmineRequire.HtmlReporter(j$);
   j$.QueryString = jasmineRequire.QueryString();
   j$.HtmlSpecFilter = jasmineRequire.HtmlSpecFilter();
 };
 
-jasmineRequire.HtmlReporter = function(j$) {
+export const HtmlReporter = function(j$) {
   function ResultsStateBuilder() {
     this.topResults = new j$.ResultsNode({}, '', null);
     this.currentParent = this.topResults;
@@ -701,7 +701,7 @@ jasmineRequire.HtmlReporter = function(j$) {
   return HtmlReporter;
 };
 
-jasmineRequire.HtmlSpecFilter = function() {
+export const HtmlSpecFilter = function() {
   function HtmlSpecFilter(options) {
     var filterString =
       options &&
@@ -717,7 +717,7 @@ jasmineRequire.HtmlSpecFilter = function() {
   return HtmlSpecFilter;
 };
 
-jasmineRequire.ResultsNode = function() {
+export const ResultsNode = function() {
   function ResultsNode(result, type, parent) {
     this.result = result;
     this.type = type;
@@ -741,7 +741,7 @@ jasmineRequire.ResultsNode = function() {
   return ResultsNode;
 };
 
-jasmineRequire.QueryString = function() {
+export const QueryString = function() {
   function QueryString(options) {
     this.navigateWithNewParam = function(key, value) {
       options.getWindowLocation().search = this.fullStringWithNewParam(
@@ -795,3 +795,4 @@ jasmineRequire.QueryString = function() {
 
   return QueryString;
 };
+
