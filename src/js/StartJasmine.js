@@ -1,16 +1,20 @@
+import jasmineRequire from '/lib/jasmine-3.5.0/jasmine.js';
+import { html, HtmlReporter, HtmlSpecFilter, ResultsNode, QueryString } from '../js/HtmlReporter'
+
+// * Add Needed Functions to jasmineRequire
+jasmineRequire.html = html;
+jasmineRequire.HtmlReporter = HtmlReporter;
+jasmineRequire.HtmlSpecFilter = HtmlSpecFilter;
+jasmineRequire.ResultsNode = ResultsNode;
+jasmineRequire.QueryString = QueryString;
+
+// * Add jasmineRequire to the Window
+window.jasmineRequire = jasmineRequire;
+
+
+// * Jasmine's `boot.js` File
+
 /**
- Starting with version 2.0, this file "boots" Jasmine, performing all of the necessary initialization before executing the loaded environment and all of a project's specs. This file should be loaded after `jasmine.js` and `jasmine_html.js`, but before any project source files or spec files are loaded. Thus this file can also be used to customize Jasmine for a project.
-
- If a project is using Jasmine via the standalone distribution, this file can be customized directly. If a project is using Jasmine via the [Ruby gem][jasmine-gem], this file can be copied into the support directory via `jasmine copy_boot_js`. Other environments (e.g., Python) will have different mechanisms.
-
- The location of `boot.js` can be specified and/or overridden in `jasmine.yml`.
-
- [jasmine-gem]: http://github.com/pivotal/jasmine-gem
- */
-
-export const boot = function(jasmineRequire) {
-
-  /**
    * ## Require &amp; Instantiate
    *
    * Require Jasmine's core files. Specifically, this requires and attaches all of Jasmine's code to the `jasmine` reference.
@@ -132,5 +136,3 @@ export const boot = function(jasmineRequire) {
     for (var property in source) destination[property] = source[property];
     return destination;
   }
-
-}

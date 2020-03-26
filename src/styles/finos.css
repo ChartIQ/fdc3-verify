@@ -11,8 +11,8 @@
 }
 
 .jasmine_html-reporter .jasmine-banner .jasmine-title {
-  background: url("/src/img/fdc3-logo.png") no-repeat;
-  background: url("/src/img/fdc3-logo.png") no-repeat, none;
+  background: url("/img/fdc3-logo.png") no-repeat;
+  background: url("/img/fdc3-logo.png") no-repeat, none;
   -moz-background-size: 100%;
   -o-background-size: 100%;
   -webkit-background-size: 100%;

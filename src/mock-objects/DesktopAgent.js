@@ -41,3 +41,8 @@ class DesktopAgent {
     return null;
   }
 }
+
+if (!window.fdc3) {
+  window.fdc3 = {}
+}
+window.fdc3.desktopAgent = new DesktopAgent();
