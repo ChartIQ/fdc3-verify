@@ -75,8 +75,7 @@ export const HtmlReporter = function(j$) {
           { className: 'jasmine-banner' },
           createDom('a', {
             className: 'jasmine-title',
-            href: 'https://fdc3.finos.org/',
-            target: '_blank'
+            href: '/',
           }),
           createDom('span', { className: 'jasmine-version' }, fdc3Version )
         ),
