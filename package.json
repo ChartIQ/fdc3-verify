@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel ./src/*.html",
+    "start": "parcel ./src/index.html --open",
     "build": "parcel build ./src/*.html"
   },
   "author": "ChartIQ",

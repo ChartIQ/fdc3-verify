@@ -17,7 +17,6 @@ The project is using [Parcel](https://parceljs.org/) for running the local serve
 
 1. `npm install` to install the project dependencies
 2. `npm run start` to start the local server on port 1234 (http://localhost:1234/index.html)
-   * > **Note:** Parcel's local server requires us to navigate directly to the index page, however, it behaves normally when built.
 3. Link the local server to your vendor's environment (Finsemble, Glue42, OpenFin, etc), so the `fdc3` object can be injected into the browser's `window` object.
 4. Click on the link to the API endpoint you wish to verify.
 
