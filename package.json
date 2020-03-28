@@ -2,6 +2,10 @@
   "name": "fdc3-verify",
   "version": "0.0.1",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChartIQ/fdc3-verify"
+  },
   "main": "index.js",
   "scripts": {
     "start": "parcel ./src/index.html --open",
