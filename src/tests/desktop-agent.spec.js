@@ -25,6 +25,12 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.open).toBeDefined();
       });
+      it("returns a promise with no value", function() {
+        return desktopAgent.open("App").then(function(result) {
+          let value = result.resolve();
+          expect(value).toBeUndefined();
+        });
+      });
     });
   });
 
@@ -34,16 +40,43 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.broadcast).toBeDefined();
       });
+      it("should not return a value", function() {
+        let context = {};
+        let result = desktopAgent.broadcast(context);
+        expect(result).toBeUndefined();
+      })
     });
     describe("addIntentListener()", function() {
       it("is defined", function() {
         expect(desktopAgent.addIntentListener).toBeDefined();
+      });
+      it("returns a Listener object", function() {
+        let intent = "StartChat";
+        let context = {};
+        let unsubscribe = function() {};
+        let listener = {
+          unsubscribe
+        }
+        let handler = function(context) {};
+        let result = desktopAgent.addIntentListener(intent, handler(context));
+        expect(result).toBe(listener);
       });
     });
 
     describe("addContextListener()", function() {
       it("is defined", function() {
         expect(desktopAgent.addContextListener).toBeDefined();
+      });
+      it("returns a Listener object", function() {
+        let intent = "StartChat";
+        let context = {};
+        let unsubscribe = function() {};
+        let listener = {
+          unsubscribe
+        }
+        let handler = function(context) {};
+        let result = desktopAgent.addContextListener(handler(context));
+        expect(result).toBe(listener);
       });
     });
   });
@@ -54,17 +87,44 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.findIntent).toBeDefined();
       });
+      it("returns an AppIntent object", function() {
+        return desktopAgent.findIntent("StartChat").then(function(result) {
+          let value = result.resolve();
+          expect(value).toBeDefined();
+          expect(value.intent).toBeDefined();
+          expect(value.apps).toBeDefined();
+        });
+      });
     });
 
     describe("findIntentsByContext()", function() {
       it("is defined", function() {
         expect(desktopAgent.findIntentsByContext).toBeDefined();
       });
+      it("returns an array of AppIntent objects", function() {
+        return desktopAgent.findIntent("StartChat").then(function(result) {
+          let value = result.resolve();
+          expect(value).toBeDefined();
+          value.forEach(val => {
+            expect(val.intent).toBeDefined();
+            expect(val.apps).toBeDefined();
+          });
+        });
+      });
     });
 
     describe("raiseIntent()", function() {
       it("is defined", function() {
         expect(desktopAgent.raiseIntent).toBeDefined();
+      });
+      it("returns an IntentResolution object", function() {
+        let context = {}
+        return desktopAgent.raiseIntent("StartChat", context).then(function(result) {
+          let value = result.resolve();
+          expect(value).toBeDefined();
+          expect(value.source).toBeDefined();
+          expect(value.version).toBeDefined();
+        });
       });
     });
   });
