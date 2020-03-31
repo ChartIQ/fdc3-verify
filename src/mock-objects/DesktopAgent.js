@@ -32,7 +32,6 @@ class DesktopAgent {
       resolve(appIntent);
     });
     return promise1;
-    // return null;
   }
   findIntentsByContext(context) {
     const promise1 = new Promise(function(resolve, reject) {
@@ -47,14 +46,26 @@ class DesktopAgent {
   }
   raiseIntent(intent, context, target) {
 
-    const promise1 = new Promise(function(resolve, reject) {
-      let intentResolution = {
-        source: '',
-        version: ''
-      };
-      resolve(intentResolution);
-    });
-    return promise1;
+    if (!intent) {
+      console.log('no intent present');
+      const promise1 = new Promise(function(resolve, reject) {
+        reject("NoAppsFound");
+      });
+      return promise1;
+    } 
+    
+    else {
+      const promise1 = new Promise(function(resolve, reject) {
+        let intentResolution = {
+          source: '',
+          version: ''
+        };
+        resolve(intentResolution);
+      });
+      return promise1;
+
+    }
+
   }
 
   // channels

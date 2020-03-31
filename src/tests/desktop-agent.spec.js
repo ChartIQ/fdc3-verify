@@ -25,11 +25,13 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.open).toBeDefined();
       });
+
       it("returns a promise with no value", function() {
         return desktopAgent.open("App").then(function(result) {
           expect(result).toBeNull();
         });
       });
+
     });
   });
 
@@ -110,13 +112,24 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.raiseIntent).toBeDefined();
       });
+
       it("returns an IntentResolution object", function() {
-        let context = {}
+        let context = {};
         return desktopAgent.raiseIntent("StartChat", context).then(function(result) {
           expect(result).toBeDefined();
           expect(result.source).toBeDefined();
           expect(result.version).toBeDefined();
         });
+      });
+
+      it("returns an error if app was not found", function() {
+        let error = desktopAgent.raiseIntent();
+        console.log(error);
+        return error.then(val => {}, reason => {
+          console.warn(reason);
+          expect(reason).toEqual("NoAppsFound");
+        });
+        
       });
     });
   });
