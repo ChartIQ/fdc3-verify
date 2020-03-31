@@ -27,8 +27,7 @@ describe("Desktop Agent", function() {
       });
       it("returns a promise with no value", function() {
         return desktopAgent.open("App").then(function(result) {
-          let value = result.resolve();
-          expect(value).toBeUndefined();
+          expect(result).toBeNull();
         });
       });
     });
@@ -43,7 +42,7 @@ describe("Desktop Agent", function() {
       it("should not return a value", function() {
         let context = {};
         let result = desktopAgent.broadcast(context);
-        expect(result).toBeUndefined();
+        expect(result).toBeNull();
       })
     });
     describe("addIntentListener()", function() {
@@ -53,13 +52,11 @@ describe("Desktop Agent", function() {
       it("returns a Listener object", function() {
         let intent = "StartChat";
         let context = {};
-        let unsubscribe = function() {};
-        let listener = {
-          unsubscribe
-        }
         let handler = function(context) {};
         let result = desktopAgent.addIntentListener(intent, handler(context));
-        expect(result).toBe(listener);
+        expect(result).toBeDefined();
+        expect(result.unsubscribe).toBeDefined();
+
       });
     });
 
@@ -68,15 +65,12 @@ describe("Desktop Agent", function() {
         expect(desktopAgent.addContextListener).toBeDefined();
       });
       it("returns a Listener object", function() {
-        let intent = "StartChat";
         let context = {};
         let unsubscribe = function() {};
-        let listener = {
-          unsubscribe
-        }
         let handler = function(context) {};
         let result = desktopAgent.addContextListener(handler(context));
-        expect(result).toBe(listener);
+        expect(result).toBeDefined();
+        expect(result.unsubscribe).toBeDefined();
       });
     });
   });
@@ -89,10 +83,9 @@ describe("Desktop Agent", function() {
       });
       it("returns an AppIntent object", function() {
         return desktopAgent.findIntent("StartChat").then(function(result) {
-          let value = result.resolve();
-          expect(value).toBeDefined();
-          expect(value.intent).toBeDefined();
-          expect(value.apps).toBeDefined();
+          expect(result).toBeDefined();
+          expect(result.intent).toBeDefined();
+          expect(result.apps).toBeDefined();
         });
       });
     });
@@ -102,10 +95,10 @@ describe("Desktop Agent", function() {
         expect(desktopAgent.findIntentsByContext).toBeDefined();
       });
       it("returns an array of AppIntent objects", function() {
-        return desktopAgent.findIntent("StartChat").then(function(result) {
-          let value = result.resolve();
-          expect(value).toBeDefined();
-          value.forEach(val => {
+        let context = {};
+        return desktopAgent.findIntentsByContext(context).then(function(result) {
+          expect(result).toBeDefined();
+          result.forEach(val => {
             expect(val.intent).toBeDefined();
             expect(val.apps).toBeDefined();
           });
@@ -120,10 +113,9 @@ describe("Desktop Agent", function() {
       it("returns an IntentResolution object", function() {
         let context = {}
         return desktopAgent.raiseIntent("StartChat", context).then(function(result) {
-          let value = result.resolve();
-          expect(value).toBeDefined();
-          expect(value.source).toBeDefined();
-          expect(value.version).toBeDefined();
+          expect(result).toBeDefined();
+          expect(result.source).toBeDefined();
+          expect(result.version).toBeDefined();
         });
       });
     });

@@ -1,7 +1,10 @@
 class DesktopAgent {
   // apps
   open(name, context) {
-    return null;
+    const promise1 = new Promise(function(resolve, reject) {
+      resolve(null);
+    });
+    return promise1;
   }
 
   // context
@@ -9,19 +12,49 @@ class DesktopAgent {
     return null;
   }
   addIntentListener(intent, handler) {
+    return {
+      unsubscribe: function() {}
+    };
   }
   addContextListener(handler) {
+    return {
+      unsubscribe: function() {}
+    };
   }
 
   // intents
   findIntent(intent, context) {
-    return null;
+    const promise1 = new Promise(function(resolve, reject) {
+      let appIntent = {
+        intent: {},
+        apps: []
+      };
+      resolve(appIntent);
+    });
+    return promise1;
+    // return null;
   }
   findIntentsByContext(context) {
-    return null;
+    const promise1 = new Promise(function(resolve, reject) {
+      let appIntent = {
+        intent: {},
+        apps: []
+      };
+      let appIntents = [appIntent];
+      resolve(appIntents);
+    });
+    return promise1;
   }
   raiseIntent(intent, context, target) {
-    return null;
+
+    const promise1 = new Promise(function(resolve, reject) {
+      let intentResolution = {
+        source: '',
+        version: ''
+      };
+      resolve(intentResolution);
+    });
+    return promise1;
   }
 
   // channels
