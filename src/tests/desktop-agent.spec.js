@@ -128,7 +128,7 @@ describe("Desktop Agent", function() {
           let expected = {
             source: null,
             version: ''
-          }
+          };
           expect(reason).toEqual(expected);
         });
         
