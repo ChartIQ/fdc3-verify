@@ -124,10 +124,12 @@ describe("Desktop Agent", function() {
 
       it("returns an error if app was not found", function() {
         let error = desktopAgent.raiseIntent();
-        console.log(error);
         return error.then(val => {}, reason => {
-          console.warn(reason);
-          expect(reason).toEqual("NoAppsFound");
+          let expected = {
+            source: null,
+            version: ''
+          }
+          expect(reason).toEqual(expected);
         });
         
       });

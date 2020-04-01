@@ -47,9 +47,12 @@ class DesktopAgent {
   raiseIntent(intent, context, target) {
 
     if (!intent) {
-      console.log('no intent present');
       const promise1 = new Promise(function(resolve, reject) {
-        reject("NoAppsFound");
+        let intentResolution = {
+          source: null,
+          version: ''
+        }
+        reject(intentResolution);
       });
       return promise1;
     } 
