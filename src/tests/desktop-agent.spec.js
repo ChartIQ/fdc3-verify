@@ -28,9 +28,18 @@ describe("Desktop Agent", function() {
 
       it("returns a promise with no value", function() {
         return desktopAgent.open("App").then(function(result) {
-          expect(result).toBeNull();
+          expect(result).toBeFalsy();
         });
       });
+
+      it("returns an error if no app was found", function() {
+        return desktopAgent.open().then(result => {
+          fail("Promise should not be resolved on error");
+        }, reason => {
+          let expected = "AppNotFound";
+          expect(reason).toEqual(expected);
+        });
+      })
 
     });
   });

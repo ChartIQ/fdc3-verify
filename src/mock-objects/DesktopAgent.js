@@ -1,8 +1,14 @@
 class DesktopAgent {
   // apps
   open(name, context) {
+    if (!name) {
     const promise1 = new Promise(function(resolve, reject) {
-      resolve(null);
+        reject("AppNotFound");
+    });
+    return promise1;
+  }
+    const promise1 = new Promise(function(resolve, reject) {
+      resolve();
     });
     return promise1;
   }
