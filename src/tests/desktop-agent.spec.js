@@ -147,17 +147,6 @@ describe("Desktop Agent", function() {
         });
       });
 
-      it("returns an error if app was not found", function() {
-        let error = desktopAgent.raiseIntent();
-        return error.then(val => {}, reason => {
-          let expected = {
-            source: null,
-            version: ''
-          };
-          expect(reason).toEqual(expected);
-        });
-        
-      });
     });
   });
 
