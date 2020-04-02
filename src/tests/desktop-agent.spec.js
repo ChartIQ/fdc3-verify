@@ -99,6 +99,14 @@ describe("Desktop Agent", function() {
           expect(result.apps).toBeDefined();
         });
       });
+      it("returns an error if called with no intent", function() {
+        return desktopAgent.findIntent().then(result => {
+          fail("Promise should not resolve");
+        }, reason => {
+          const expected = "NoAppsFound";
+          expect(reason).toBe(expected);
+        })
+    });
     });
 
     describe("findIntentsByContext()", function() {
