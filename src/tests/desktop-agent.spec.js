@@ -53,7 +53,7 @@ describe("Desktop Agent", function() {
       it("should not return a value", function() {
         let context = {};
         let result = desktopAgent.broadcast(context);
-        expect(result).toBeNull();
+        expect(result).toBeFalsy();
       })
     });
     describe("addIntentListener()", function() {
