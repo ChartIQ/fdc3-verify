@@ -123,6 +123,14 @@ describe("Desktop Agent", function() {
           });
         });
       });
+      it("returns an error if called with no context", function() {
+        return desktopAgent.findIntentsByContext().then(result => {
+          fail("Promise should not resolve");
+        }, reason => {
+          const expected = "NoAppsFound";
+          expect(reason).toBe(expected);
+        })
+      });
     });
 
     describe("raiseIntent()", function() {

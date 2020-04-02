@@ -46,6 +46,12 @@ class DesktopAgent {
     return promise1;
   }
   findIntentsByContext(context) {
+    if (!context) {
+      const noContext = new Promise(function(resolve, reject) {
+        reject("NoAppsFound");
+      })
+      return noContext;
+    }
     const promise1 = new Promise(function(resolve, reject) {
       let appIntent = {
         intent: {},
