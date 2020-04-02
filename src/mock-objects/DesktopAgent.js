@@ -2,15 +2,15 @@ class DesktopAgent {
   // apps
   open(name, context) {
     if (!name) {
-    const promise1 = new Promise(function(resolve, reject) {
+      const appNotFoundPromise = new Promise(function(resolve, reject) {
         reject("AppNotFound");
-    });
-    return promise1;
-  }
-    const promise1 = new Promise(function(resolve, reject) {
+      });
+      return appNotFoundPromise;
+    }
+    const success = new Promise(function(resolve, reject) {
       resolve();
     });
-    return promise1;
+    return success;
   }
 
   // context
@@ -36,14 +36,14 @@ class DesktopAgent {
       })
       return noIntent;
     }
-    const promise1 = new Promise(function(resolve, reject) {
+    const success = new Promise(function(resolve, reject) {
       let appIntent = {
         intent: {},
         apps: []
       };
       resolve(appIntent);
     });
-    return promise1;
+    return success;
   }
   findIntentsByContext(context) {
     if (!context) {
@@ -52,7 +52,7 @@ class DesktopAgent {
       })
       return noContext;
     }
-    const promise1 = new Promise(function(resolve, reject) {
+    const success = new Promise(function(resolve, reject) {
       let appIntent = {
         intent: {},
         apps: []
@@ -60,30 +60,30 @@ class DesktopAgent {
       let appIntents = [appIntent];
       resolve(appIntents);
     });
-    return promise1;
+    return success;
   }
   raiseIntent(intent, context, target) {
 
     if (!intent) {
-      const promise1 = new Promise(function(resolve, reject) {
+      const failedIntentResolution = new Promise(function(resolve, reject) {
         let intentResolution = {
           source: null,
           version: ''
         }
         reject(intentResolution);
       });
-      return promise1;
+      return failedIntentResolution;
     } 
     
     else {
-      const promise1 = new Promise(function(resolve, reject) {
+      const success = new Promise(function(resolve, reject) {
         let intentResolution = {
           source: '',
           version: ''
         };
         resolve(intentResolution);
       });
-      return promise1;
+      return success;
 
     }
 
