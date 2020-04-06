@@ -25,6 +25,22 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.open).toBeDefined();
       });
+
+      it("returns a promise with no value", function() {
+        return desktopAgent.open("App").then(function(result) {
+          expect(result).toBeFalsy();
+        });
+      });
+
+      it("returns an error if no app was found", function() {
+        return desktopAgent.open().then(result => {
+          fail("Promise should not be resolved on error");
+        }, reason => {
+          let expected = "AppNotFound";
+          expect(reason).toEqual(expected);
+        });
+      })
+
     });
   });
 
@@ -34,16 +50,38 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.broadcast).toBeDefined();
       });
+      it("should not return a value", function() {
+        let context = {};
+        let result = desktopAgent.broadcast(context);
+        expect(result).toBeFalsy();
+      })
     });
     describe("addIntentListener()", function() {
       it("is defined", function() {
         expect(desktopAgent.addIntentListener).toBeDefined();
+      });
+      it("returns a Listener object", function() {
+        let intent = "StartChat";
+        let context = {};
+        let handler = function(context) {};
+        let result = desktopAgent.addIntentListener(intent, handler(context));
+        expect(result).toBeDefined();
+        expect(result.unsubscribe).toBeDefined();
+
       });
     });
 
     describe("addContextListener()", function() {
       it("is defined", function() {
         expect(desktopAgent.addContextListener).toBeDefined();
+      });
+      it("returns a Listener object", function() {
+        let context = {};
+        let unsubscribe = function() {};
+        let handler = function(context) {};
+        let result = desktopAgent.addContextListener(handler(context));
+        expect(result).toBeDefined();
+        expect(result.unsubscribe).toBeDefined();
       });
     });
   });
@@ -54,11 +92,44 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.findIntent).toBeDefined();
       });
+      it("returns an AppIntent object", function() {
+        return desktopAgent.findIntent("StartChat").then(function(result) {
+          expect(result).toBeDefined();
+          expect(result.intent).toBeDefined();
+          expect(result.apps).toBeDefined();
+        });
+      });
+      it("returns an error if called with no intent", function() {
+        return desktopAgent.findIntent().then(result => {
+          fail("Promise should not resolve");
+        }, reason => {
+          const expected = "NoAppsFound";
+          expect(reason).toBe(expected);
+        })
+    });
     });
 
     describe("findIntentsByContext()", function() {
       it("is defined", function() {
         expect(desktopAgent.findIntentsByContext).toBeDefined();
+      });
+      it("returns an array of AppIntent objects", function() {
+        let context = {};
+        return desktopAgent.findIntentsByContext(context).then(function(result) {
+          expect(result).toBeDefined();
+          result.forEach(val => {
+            expect(val.intent).toBeDefined();
+            expect(val.apps).toBeDefined();
+          });
+        });
+      });
+      it("returns an error if called with no context", function() {
+        return desktopAgent.findIntentsByContext().then(result => {
+          fail("Promise should not resolve");
+        }, reason => {
+          const expected = "NoAppsFound";
+          expect(reason).toBe(expected);
+        })
       });
     });
 
@@ -66,6 +137,16 @@ describe("Desktop Agent", function() {
       it("is defined", function() {
         expect(desktopAgent.raiseIntent).toBeDefined();
       });
+
+      it("returns an IntentResolution object", function() {
+        let context = {};
+        return desktopAgent.raiseIntent("StartChat", context).then(function(result) {
+          expect(result).toBeDefined();
+          expect(result.source).toBeDefined();
+          expect(result.version).toBeDefined();
+        });
+      });
+
     });
   });
 
